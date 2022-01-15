@@ -1,32 +1,34 @@
 const path = require("path");
 const common = require("./webpack.common");
 const {merge} = require("webpack-merge");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 module.exports = merge(common, {
 	mode: "production",
-	// devtool: 'inline-source-map',
+	devtool: "source-map",
+	entry: {
+		main: "./lib/index.js",
+	},
 	output: {
-		filename: "scripts/[name]-[contenthash].bundle.js",
+		filename: "studioled.umd.js",
 		path: path.resolve(__dirname, "dist"),
-		assetModuleFilename: "assets/[name]-[hash][ext]",
+		libraryTarget: "umd",
 		clean: true,
 	},
-	plugins: [
-		new MiniCssExtractPlugin({
-			filename: "css/[name]-[contenthash].css",
-		}),
-	],
 	module: {
 		rules: [
 			{
-				test: /\.scss$/,
-				use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+				test: /\.m?js$/,
+				exclude: /(node_modules|bower_components)/,
+				use: {
+					loader: "babel-loader",
+					options: {
+						presets: ["@babel/preset-env"],
+					},
+				},
 			},
 		],
 	},
 	optimization: {
-		minimizer: [`...`, new CssMinimizerPlugin()],
+		minimize: false,
 	},
 });

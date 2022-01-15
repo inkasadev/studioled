@@ -1,7 +1,7 @@
 {
-	"name": "webpack",
-	"version": "1.0.0",
-	"description": "",
+	"name": "studioled",
+	"version": "0.0.1",
+	"description": "A library to show numbers on an LED display.",
 	"main": "index.js",
 	"scripts": {
 		"test": "npm run test:coverage",
@@ -12,11 +12,12 @@
 		"test:watch:server": "jest --config test/jest.server.js --watch",
 		"dev": "webpack-dev-server --config webpack.dev.js --open",
 		"build": "webpack --config webpack.prod.js",
+		"build:lib": "npx babel --out-dir lib src",
 		"lint": "jest --config test/jest.lint.js",
 		"prettier": "prettier --ignore-path .gitignore \"**/*.+(js|json)\"",
 		"format": "npm run prettier -- --write",
 		"check-format": "npm run prettier -- --list-different",
-		"validate": "npm run check-format && npm run test && npm run build",
+		"validate": "npm run check-format && npm run test && npm run build:lib && npm run build",
 		"setup": "npm install && npm run validate"
 	},
 	"jest-runner-eslint": {
@@ -34,6 +35,8 @@
 		"@testing-library/dom": "^8.11.1",
 		"@testing-library/jest-dom": "^5.16.1",
 		"@testing-library/user-event": "^13.5.0",
+		"babel-loader": "^8.2.3",
+		"canvas": "^2.8.0",
 		"css-loader": "^6.5.1",
 		"css-minimizer-webpack-plugin": "^3.3.1",
 		"eslint": "^8.6.0",
@@ -45,6 +48,7 @@
 		"html-webpack-plugin": "^5.5.0",
 		"husky": "^7.0.4",
 		"jest": "^27.4.7",
+		"jest-canvas-mock": "^2.3.1",
 		"jest-runner-eslint": "^1.0.0",
 		"mini-css-extract-plugin": "^2.4.6",
 		"node-sass": "^7.0.1",
