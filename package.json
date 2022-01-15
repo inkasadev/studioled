@@ -1,8 +1,8 @@
 {
 	"name": "studioled",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "A library to show numbers on an LED display.",
-	"main": "index.js",
+	"main": "lib/index.js",
 	"scripts": {
 		"test": "npm run test:coverage",
 		"test:coverage": "npm run test:coverage:client",
@@ -20,6 +20,10 @@
 		"validate": "npm run check-format && npm run test && npm run build:lib && npm run build",
 		"setup": "npm install && npm run validate"
 	},
+	"files": [
+		"dist",
+		"lib"
+	],
 	"jest-runner-eslint": {
 		"cliOptions": {
 			"ignorePath": "./.gitignore"
