@@ -6,7 +6,7 @@ module.exports = merge(common, {
 	mode: "production",
 	devtool: "source-map",
 	entry: {
-		main: "./lib/index.js",
+		main: "./dist/studioled.umd.min.js",
 	},
 	output: {
 		filename: "studioled.umd.js",

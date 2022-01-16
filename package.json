@@ -1,8 +1,8 @@
 {
 	"name": "studioled",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "A library to show numbers on an LED display.",
-	"main": "lib/index.js",
+	"main": "dist/studioled.umd.min.js",
 	"scripts": {
 		"test": "npm run test:coverage",
 		"test:coverage": "npm run test:coverage:client",
