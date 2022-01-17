@@ -3,7 +3,7 @@
 ![npm (scoped)](https://img.shields.io/npm/v/studioled?label=NPM)
 ![NPM](https://img.shields.io/npm/l/studioled?label=License)
 ![npm](https://img.shields.io/npm/dt/studioled?label=Downloads)
-[![Sponsor](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&color=red&logo=GitHub)](https://github.com/inkasadev/studioled)
+[![Sponsor](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&color=red&logo=GitHub)](https://github.com/inkasadev/studioled)[![<ORG_NAME>](https://circleci.com/gh/inkasadev/studioled.svg?style=svg)](LINK)
 
 A library to show numbers on an LED display.
 
