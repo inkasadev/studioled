@@ -1,6 +1,13 @@
 # Studio Led
 
+![npm (scoped)](https://img.shields.io/npm/v/studioled?label=NPM)
+![NPM](https://img.shields.io/npm/l/studioled?label=License)
+![npm](https://img.shields.io/npm/dt/studioled?label=Downloads)
+[![Sponsor](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&color=red&logo=GitHub)](https://github.com/inkasadev/studioled)
+
 A library to show numbers on an LED display.
+
+![screenshot_00](.readme/screenshot_00.png)
 
 ## Installation
 
@@ -52,7 +59,7 @@ const led = new StudioLed({
 	element: document.querySelector(".led"),
 });
 
-let.setValue(42);
+led.setValue(42);
 ```
 
 ## Constructor
@@ -62,10 +69,10 @@ You can also pass other settings to the class's constructor.
 ```js
 const led = new StudioLed({
 	element: document.querySelector(".led"),
-	width: 85,
+	width: 75,
 	height: 135,
 	initialValue: 42,
-	baseDigits: 2,
+	baseDigits: 3,
 });
 ```
 
@@ -76,6 +83,8 @@ const led = new StudioLed({
 | `height`       | number | 135     | height of the digit                                                                                                                                                                                                                                                       |
 | `initialValue` | number | 0       | initial value to be displayed                                                                                                                                                                                                                                             |
 | `baseDigits`   | number | 0       | how many digits the LED display have to show always. If the number to be displayed is less than baseDigits, the LED display will show zeros in the other segments. eg: If baseDigits value is '3' and the number to be displayed is '42', the LED display will show '042' |
+
+![screenshot_01](.readme/screenshot_01.png)
 
 ## Methods
 
@@ -104,7 +113,7 @@ led.setValue(42);
 **Example**
 
 ```js
-let.getValue();
+led.getValue();
 ```
 
 ### setStatus(status)
@@ -120,8 +129,10 @@ let.getValue();
 **Example**
 
 ```js
-let.setStatus("success");
+led.setStatus("success");
 ```
+
+![screenshot_02](.readme/screenshot_02.png)
 
 ### addBreakpoint(value, width, height)
 
@@ -161,7 +172,7 @@ us.
 ## Versioning
 
 We use [SemVer](http://semver.org/) for versioning. For the versions available,
-see the [tags on this repository](https://github.com/your/project/tags).
+see the [tags on this repository](https://github.com/inkasadev/studioled/tags).
 
 ## Authors
 

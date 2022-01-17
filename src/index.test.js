@@ -57,6 +57,7 @@ describe("StudioLed library", () => {
 
 		it("should call setStatus('error') method", () => {
 			const value = led.setStatus("error");
+
 			expect(value).toBe("error");
 		});
 

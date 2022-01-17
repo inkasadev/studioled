@@ -1,3 +1,17 @@
+/*
+ * A classe StudioLed recebe 5 parametros:
+ *
+ * element: elemento DOM onde o display LED será renderizado
+ * width: largura do número
+ * height: altura do número
+ * initialValue: valor inicial a ser exibido
+ * baseDigits: quantos dígitos o display de LED deve mostrar
+ * sempre. Se o número a ser exibido for menor que baseDigits,
+ * o display de LED mostrará zeros nos outros segmentos.
+ * ex: Se o valor de baseDigits for '3' e o número a ser
+ * exibido for '42', o display de LED mostrará '042'.
+ *
+ */
 export class StudioLed {
 	constructor({
 		element,
@@ -8,13 +22,24 @@ export class StudioLed {
 	}) {
 		const self = this;
 		const _config = {element, width, height, baseDigits};
+		/*
+		 * Esse objeto irá armazenar os três spritesheets de
+		 * números. Cada spritemap possui um cor diferente
+		 * (preto, verde e vermelho), além dos números de 0 a
+		 * 9;
+		 */
 		const _sprites = {};
 
+		// Cria um elemento canvas;
 		const canvas = document.createElement("canvas");
 		const ctx = canvas.getContext("2d");
 		canvas.width = _config.width;
 		canvas.height = _config.height;
 
+		/*
+		 * Caso o usuario informe um elemento DOM válido,
+		 * tenta adicionar o canvas ao elemento.
+		 */
 		try {
 			if (typeof _config.element !== "object")
 				throw new Error("Please pass a valid element to the constructor");
@@ -23,17 +48,33 @@ export class StudioLed {
 			throw new Error("Please pass a valid element to the constructor");
 		}
 
+		// Define o número a ser exibido como initialValue;
 		_config.value = initialValue;
+		// Define o status do display como "default";
 		_config.status = "default";
 
+		// Função responsavel por carregar as imagens;
 		const loadImages = () => {
+			/*
+			 * A função dessa variavel é contar a quantidade
+			 * de imagens carregadas;
+			 */
 			let counter = 0;
+			/*
+			 * A função loaded() é chamada sempre que uma das
+			 * spritesheets é carregada. Quando a terceira é
+			 * carregada, o método render() é chamado.
+			 */
 			/* istanbul ignore next */
 			const loaded = () => {
 				if (++counter === 3) {
 					self.render();
 				}
 			};
+
+			/*
+			 * As linhas abaixo carregam os três spritesheets;
+			 */
 			_sprites.default = new Image();
 			/* istanbul ignore next */
 			_sprites.default.onload = () => loaded();
@@ -53,6 +94,15 @@ export class StudioLed {
 				"data:image/png;base64,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";
 		};
 
+		/*
+		 * A função formatValue(val) formata o número antes
+		 * que ele seja exibido de acordo com a propriedade
+		 * baseDigits. Se o número a ser exibido for menor
+		 * que baseDigits, o display de LED mostrará zeros
+		 * nos outros segmentos. ex: Se o valor de baseDigits
+		 * for '3' e o número a ser exibido for '42', o
+		 * display de LED mostrará '042'.
+		 */
 		const formatValue = (val) => {
 			let strVal = "" + val;
 			const diff = _config.baseDigits - strVal.length;
@@ -63,6 +113,15 @@ export class StudioLed {
 		};
 
 		Object.defineProperties(self, {
+			/*
+			 * Renderiza o número contido na propriedade
+			 * _config.value. O método .render() primeiro ajusta
+			 * o tamanho do elemento canvas para que ele
+			 * comporte os números. Em seguida, os números são
+			 * desenhados no canvas utilizando o spritesheet
+			 * desejado. O úsuario pode alterar o spritesheet
+			 * utilizando o método .setStatus();
+			 */
 			render: {
 				value: () => {
 					try {
@@ -94,6 +153,10 @@ export class StudioLed {
 				enumerable: true,
 			},
 
+			/*
+			 * Define o número a ser exibido no elemento
+			 * canvas e depois chama o método .render();
+			 */
 			setValue: {
 				value: (val) => {
 					_config.value = formatValue(val);
@@ -105,6 +168,10 @@ export class StudioLed {
 				enumerable: true,
 			},
 
+			/*
+			 * Retorna o número a ser exibido no elemento
+			 * canvas;
+			 */
 			getValue: {
 				value: () => {
 					return _config.value;
@@ -112,6 +179,13 @@ export class StudioLed {
 				enumerable: true,
 			},
 
+			/*
+			 * Define o status do display. O status altera
+			 * a cor do display, podendo ser preto ("default"),
+			 * verde ("success") ou vermelho ("error"). Caso
+			 * o úsuario informe um valor inválido, um erro é
+			 * disparado.
+			 */
 			setStatus: {
 				value: (status) => {
 					const statusTypes = ["default", "success", "error"];
@@ -127,6 +201,13 @@ export class StudioLed {
 				enumerable: true,
 			},
 
+			/*
+			 * Altera o tamanho dos números do display LED
+			 * em larguras de tela diferentes. O método criar
+			 * um breakpoint, fazendo com que os números tenham
+			 * a largura e a altura passadas em telas com o
+			 * tamanho minimo informado;
+			 */
 			addBreakpoint: {
 				value: (value, width, height) => {
 					const media = window.matchMedia(`(min-width: ${value}px)`);
@@ -154,7 +235,9 @@ export class StudioLed {
 			},
 		});
 
+		// Carrega as spritesheets;
 		loadImages();
+		// Formata o valor a ser exibido inicialmente;
 		_config.value = formatValue(Number(_config.value));
 	}
 }

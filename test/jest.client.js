@@ -2,6 +2,9 @@ module.exports = {
 	...require("./jest.common"),
 	testEnvironment: "jest-environment-jsdom",
 	setupFilesAfterEnv: ["@testing-library/jest-dom/extend-expect"],
+	// testPathIgnorePatterns: ["dist/", "lib/"],
+	// modulePathIgnorePatterns: ["dist/", "lib/"],
+	// watchPathIgnorePatterns: ["dist/", "lib/"],
 	/* coverageThreshold: {
 		global: {
 			statements: 34,
