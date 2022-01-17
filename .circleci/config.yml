@@ -12,6 +12,9 @@ jobs:
           # If you are using yarn, change the line below from "npm" to "yarn"
           pkg-manager: npm
       - run: npm run setup
+      - store_artifacts:
+          path: /coverage/lcov-report/
+          destination: artifact-file
 
 workflows:
   # Below is the definition of your workflow.
