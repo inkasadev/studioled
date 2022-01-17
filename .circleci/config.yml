@@ -18,10 +18,6 @@ jobs:
           token: 16bd5590-dfd5-42ac-8b2d-27b1ad52e86e
 
 workflows:
-  # Below is the definition of your workflow.
-  # Inside the workflow, you provide the jobs you want to run, e.g this workflow runs the build-and-test job above.
-  # CircleCI will run this workflow on every commit.
-  # For more details on extending your workflow, see the configuration docs: https://circleci.com/docs/2.0/configuration-reference/#workflows
   sample:
     jobs:
       - build-and-test
