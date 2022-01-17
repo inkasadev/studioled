@@ -1,6 +1,6 @@
 {
 	"name": "studioled",
-	"version": "0.0.4",
+	"version": "0.0.5",
 	"description": "A library to show numbers on an LED display.",
 	"main": "src/index.js",
 	"scripts": {
