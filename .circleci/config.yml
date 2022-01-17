@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
   node: circleci/node@4.7.0
+  codecov: codecov/codecov@1.0.2
 
 jobs:
   build-and-test:
@@ -12,9 +13,9 @@ jobs:
           # If you are using yarn, change the line below from "npm" to "yarn"
           pkg-manager: npm
       - run: npm run setup
-      - store_artifacts:
-          path: /coverage/lcov-report/
-          destination: artifact-file
+      - codecov/upload:
+          file: "./coverage/clover.xml"
+          token: 16bd5590-dfd5-42ac-8b2d-27b1ad52e86e
 
 workflows:
   # Below is the definition of your workflow.
