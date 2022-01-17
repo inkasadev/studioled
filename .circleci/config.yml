@@ -11,10 +11,7 @@ jobs:
       - node/install-packages:
           # If you are using yarn, change the line below from "npm" to "yarn"
           pkg-manager: npm
-      - node/with-cache:
-          steps:
-            - run: npm install
-      - run: npm run test
+      - run: npm run setup
 
 workflows:
   # Below is the definition of your workflow.
